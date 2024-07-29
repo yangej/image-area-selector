@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Header from "./Header";
-import ImageUploader from "./ImageUploader";
+import ImageUploader, { ImageUploaderProps } from "./ImageUploader";
 
 const Container = styled.div`
   width: 433px;
@@ -15,12 +15,14 @@ const ContentContainer = styled.div`
   padding: 40px;
 `;
 
-const ImagePanel = () => {
+interface Props extends ImageUploaderProps {}
+
+const ImagePanel = (props: Props) => {
   return (
     <Container>
       <Header />
       <ContentContainer>
-        <ImageUploader />
+        <ImageUploader {...props} />
       </ContentContainer>
     </Container>
   );
