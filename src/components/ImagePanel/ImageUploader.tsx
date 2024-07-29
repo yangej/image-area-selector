@@ -6,6 +6,7 @@ import {
 import ImageUploadArea from "./ImageUploadArea";
 import { useState, type ChangeEventHandler } from "react";
 import DeleteButton from "./DeleteButton";
+import { areAnyAreasOverlapping } from "@/utils/imageArea";
 
 const HiddenInput = styled.input`
   display: none;
@@ -32,6 +33,12 @@ const ImageUploader = ({ areas, onChange }: ImageUploaderProps) => {
     setPreviewURL(fileURL);
   };
 
+  const handleAreaChange: IAreaSelectorProps["onChange"] = (areas) => {
+    if (areAnyAreasOverlapping(areas)) return;
+
+    onChange(areas);
+  };
+
   const handleAreaDelete = (areaNumber: number) => {
     const areaIndex = areaNumber - 1;
 
@@ -44,7 +51,7 @@ const ImageUploader = ({ areas, onChange }: ImageUploaderProps) => {
       {previewURL ? (
         <AreaSelector
           areas={areas}
-          onChange={onChange}
+          onChange={handleAreaChange}
           customAreaRenderer={({ areaNumber }) => (
             <DeleteButtonWrapper key={areaNumber}>
               <DeleteButton onClick={() => handleAreaDelete(areaNumber)} />
