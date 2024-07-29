@@ -1,9 +1,9 @@
 import { IArea } from "@bmunozg/react-image-area";
-
 import styled from "@emotion/styled";
+import { useMemo, useState } from "react";
+
 import ImagePanel from "./components/ImagePanel/ImagePanel";
 import PreviewPanel from "./components/PreviewPanel";
-import { useMemo, useState } from "react";
 import { pick } from "./utils/common";
 
 const Container = styled.div`

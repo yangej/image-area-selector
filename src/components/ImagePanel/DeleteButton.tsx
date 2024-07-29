@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import IconDelete from "@/assets/icon-delete.png";
 
 const Container = styled.div`

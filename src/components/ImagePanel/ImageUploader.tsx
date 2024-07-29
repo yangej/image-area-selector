@@ -1,12 +1,14 @@
-import styled from "@emotion/styled";
 import {
   AreaSelector,
   type IAreaSelectorProps,
 } from "@bmunozg/react-image-area";
-import ImageUploadArea from "./ImageUploadArea";
-import { useState, type ChangeEventHandler } from "react";
-import DeleteButton from "./DeleteButton";
+import styled from "@emotion/styled";
+import { type ChangeEventHandler, useState } from "react";
+
 import { areAnyAreasOverlapping } from "@/utils/imageArea";
+
+import DeleteButton from "./DeleteButton";
+import ImageUploadArea from "./ImageUploadArea";
 
 const HiddenInput = styled.input`
   display: none;
