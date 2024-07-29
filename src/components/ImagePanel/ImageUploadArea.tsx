@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import IconImage from "@/assets/icon-image.png";
 
 const Container = styled.div`
