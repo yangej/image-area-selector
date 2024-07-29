@@ -8,10 +8,9 @@ const Container = styled.div`
   padding: 40px;
 `;
 
-const Text = styled.div`
+const Text = styled.pre`
   font-size: 14px;
   color: white;
-  word-wrap: break-word;
 `;
 
 interface Props {

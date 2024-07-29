@@ -17,6 +17,8 @@ export function App() {
   const displayedValue = useMemo(() => {
     return JSON.stringify(
       areas.map((area) => pick(area, ["x", "y", "width", "height"])),
+      null,
+      2,
     );
   }, [areas]);
 
