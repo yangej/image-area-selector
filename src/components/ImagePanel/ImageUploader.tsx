@@ -5,6 +5,7 @@ import {
 } from "@bmunozg/react-image-area";
 import ImageUploadArea from "./ImageUploadArea";
 import { useState, type ChangeEventHandler } from "react";
+import DeleteButton from "./DeleteButton";
 
 const HiddenInput = styled.input`
   display: none;
@@ -12,6 +13,11 @@ const HiddenInput = styled.input`
 
 const PreviewImage = styled.img`
   width: 100%;
+`;
+
+const DeleteButtonWrapper = styled.div`
+  position: absolute;
+  right: -40px;
 `;
 
 export interface ImageUploaderProps
@@ -26,11 +32,25 @@ const ImageUploader = ({ areas, onChange }: ImageUploaderProps) => {
     setPreviewURL(fileURL);
   };
 
+  const handleAreaDelete = (areaNumber: number) => {
+    const areaIndex = areaNumber - 1;
+
+    onChange(areas.filter((_area, index) => index !== areaIndex));
+  };
+
   return (
     <>
       <HiddenInput id="image-uploader" type="file" onChange={handleChange} />
       {previewURL ? (
-        <AreaSelector areas={areas} onChange={onChange}>
+        <AreaSelector
+          areas={areas}
+          onChange={onChange}
+          customAreaRenderer={({ areaNumber }) => (
+            <DeleteButtonWrapper key={areaNumber}>
+              <DeleteButton onClick={() => handleAreaDelete(areaNumber)} />
+            </DeleteButtonWrapper>
+          )}
+        >
           <PreviewImage src={previewURL} />
         </AreaSelector>
       ) : (
