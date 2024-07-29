@@ -3,7 +3,8 @@ import { IArea } from "@bmunozg/react-image-area";
 import styled from "@emotion/styled";
 import ImagePanel from "./components/ImagePanel/ImagePanel";
 import PreviewPanel from "./components/PreviewPanel";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { pick } from "./utils/common";
 
 const Container = styled.div`
   display: flex;
@@ -13,6 +14,12 @@ const Container = styled.div`
 export function App() {
   const [areas, setAreas] = useState<IArea[]>([]);
 
+  const displayedValue = useMemo(() => {
+    return JSON.stringify(
+      areas.map((area) => pick(area, ["x", "y", "width", "height"])),
+    );
+  }, [areas]);
+
   const handleAreasChange = (areas: IArea[]) => {
     setAreas(areas);
   };
@@ -20,7 +27,7 @@ export function App() {
   return (
     <Container>
       <ImagePanel areas={areas} onChange={handleAreasChange} />
-      <PreviewPanel content={JSON.stringify(areas)} />
+      <PreviewPanel content={displayedValue} />
     </Container>
   );
 }
