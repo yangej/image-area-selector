@@ -11,6 +11,7 @@ const Container = styled.div`
 const Text = styled.pre`
   font-size: 14px;
   color: white;
+  white-space: break-spaces;
 `;
 
 interface Props {
