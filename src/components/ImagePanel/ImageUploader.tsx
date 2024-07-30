@@ -49,7 +49,12 @@ const ImageUploader = ({ areas, onChange }: ImageUploaderProps) => {
 
   return (
     <>
-      <HiddenInput id="image-uploader" type="file" onChange={handleChange} />
+      <HiddenInput
+        id="image-uploader"
+        type="file"
+        accept="image/*"
+        onChange={handleChange}
+      />
       {previewURL ? (
         <AreaSelector
           areas={areas}
